@@ -33,7 +33,6 @@ Install the gem(s):
     
 ## TODO
 
-- remove frozen copy sequel gem when updateis released
 - include logic for image width and height
 - better assignment support (i.e. don't require separate assignment of type and data)
 - publish in sequel www/pages/plugins

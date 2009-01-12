@@ -1,6 +1,3 @@
-# get frozen copy of sequel with patched support for bytea escaping
-$:.unshift File.dirname(__FILE__)+'/sequel-2.8.0.patched/lib'
-
 require 'rubygems'
 require 'test/unit'
 require 'sequel'
