@@ -1,0 +1,7 @@
+unwwwired.net is S. Brent Faulkner, an independent developer based in Caledon, Ontario with a wide range of experience from over 20 years in the software industry.
+
+Working “closer to the metal” in C and C++ for many years, Brent's past projects included code generators, compilers and interpreters, mobile message switches and terminal emulators for UNIX and Windows.
+
+More recently, he spent several years developing FileMaker Pro applications for the enterprise before being bitten by the Ruby on Rails bug.
+
+Offering a wide variety of services, he has extensive experience with custom software development, web technologies, systems integration and system administration.
