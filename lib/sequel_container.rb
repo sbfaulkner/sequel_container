@@ -15,22 +15,28 @@ module Sequel
 
           class_eval <<-CONTAINED_PATH, __FILE__, __LINE__ + 1
             def #{object}_path
-              return if #{object}_data.nil? || #{object}_data.empty?
+              return unless #{object}?
               @#{object}_path ||= write_#{object}
             end
           CONTAINED_PATH
 
           class_eval <<-CONTAINED_URL, __FILE__, __LINE__ + 1
             def #{object}_url
-              return if #{object}_data.nil? || #{object}_data.empty?
+              return unless #{object}?
               @#{object}_path ||= write_#{object}
               @#{object}_url ||= "/#{container}/\#{id}/\#{#{object}_filename}"
             end
           CONTAINED_URL
 
+          class_eval <<-CONTAINED_QUERY, __FILE__, __LINE__ + 1
+            def #{object}?
+              !#{object}_data.nil?
+            end
+          CONTAINED_QUERY
+
           class_eval <<-CONTAINED_IMAGE, __FILE__, __LINE__ + 1
             def #{object}_image?
-              #{object}_type[0,6] == 'image/'
+              #{object}? && #{object}_type[0,6] == 'image/'
             end
           CONTAINED_IMAGE
 
