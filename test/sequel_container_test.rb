@@ -32,6 +32,7 @@ class SequelCascadingTest < Test::Unit::TestCase
   def test_should_create_empty_container
     company = Company.create
     assert company.reload
+    assert !company.logo?
     assert_nil company.logo_type
     assert_nil company.logo_data
     assert_nil company.logo_path
@@ -43,6 +44,7 @@ class SequelCascadingTest < Test::Unit::TestCase
     logo = File.read(File.dirname(__FILE__)+'/data/logo.gif')
     company = Company.create :logo_type => 'image/gif', :logo_data => logo
     assert company.reload
+    assert company.logo?
     assert company.logo_image?
     assert_equal logo, company.logo_data
     assert_equal Dir.tmpdir+"/companies/#{company.id}/logo.gif", company.logo_path
@@ -53,6 +55,7 @@ class SequelCascadingTest < Test::Unit::TestCase
     bio = File.read(File.dirname(__FILE__)+'/data/bio.txt')
     company = Company.create :biography_type => 'text/plain', :biography_data => bio
     assert company.reload
+    assert company.biography?
     assert !company.biography_image?
     assert_equal bio, company.biography_data
     assert_equal Dir.tmpdir+"/companies/#{company.id}/biography.txt", company.biography_path
@@ -63,6 +66,7 @@ class SequelCascadingTest < Test::Unit::TestCase
     bio = File.read(File.dirname(__FILE__)+'/data/bio.html')
     company = Company.create :biography_type => 'text/html', :biography_data => bio
     assert company.reload
+    assert company.biography?
     assert !company.biography_image?
     assert_equal bio, company.biography_data
     assert_equal Dir.tmpdir+"/companies/#{company.id}/biography.html", company.biography_path
