@@ -30,7 +30,7 @@ module Sequel
 
           class_eval <<-CONTAINED_QUERY, __FILE__, __LINE__ + 1
             def #{object}?
-              !#{object}_data.nil?
+              !#{object}_type.nil? && !#{object}_type.empty?
             end
           CONTAINED_QUERY
 
