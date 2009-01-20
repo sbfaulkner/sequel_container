@@ -72,4 +72,22 @@ class SequelCascadingTest < Test::Unit::TestCase
     assert_equal Dir.tmpdir+"/companies/#{company.id}/biography.html", company.biography_path
     assert_equal "/companies/#{company.id}/biography.html", company.biography_url
   end
+
+  def test_should_be_empty_container_when_type_is_nil
+    company = Company.create :biography_data => ''
+    assert company.reload
+    assert !company.biography?
+  end
+
+  def test_should_be_empty_container_when_type_is_blank
+    company = Company.create :biography_type => '', :biography_data => ''
+    assert company.reload
+    assert !company.biography?
+  end
+
+  def test_should_contain_empty_document_when_type_is_set
+    company = Company.create :biography_type => 'text/plain', :biography_data => ''
+    assert company.reload
+    assert company.biography?
+  end
 end
