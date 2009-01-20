@@ -36,6 +36,7 @@ class SequelCascadingTest < Test::Unit::TestCase
     assert_nil company.logo_data
     assert_nil company.logo_path
     assert_nil company.logo_url
+    assert !company.logo_image?
   end
 
   def test_should_contain_image
