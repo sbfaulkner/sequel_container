@@ -11,7 +11,7 @@ I needed a way to more easily support images and css in blobs, since the hosting
 Run the following if you haven't already:
 
     $ gem sources -a http://gems.github.com
-  
+
 Install the gem(s):
 
     $ sudo gem install -r sbfaulkner-sequel_container
@@ -20,7 +20,7 @@ Install the gem(s):
 
     require 'rubygems'
     require 'sequel'
-    
+
     class User < Sequel::Model
       set_schema do
         primary_key :id
@@ -46,5 +46,5 @@ Install the gem(s):
 
 ## Legal
 
-**Author:** S. Brent Faulkner <brentf@unwwwired.net>  
+**Author:** S. Brent Faulkner <brentf@unwwwired.net>
 **License:** Copyright &copy; 2009 unwwwired.net, released under the MIT license
