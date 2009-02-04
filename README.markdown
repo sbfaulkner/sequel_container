@@ -28,9 +28,15 @@ Install the gem(s):
         bytea :avatar_data
       end
       is :container, :tmp => File.dirname(__FILE__) + '/tmp'
-      contains :avatar
+      contains :avatar, :url => '/images/avatars/:id.:extension'
     end
-    
+
+## CHANGES
+
+### 1.1.0
+
+- added support for :url option on contains to specify custom url path
+
 ## TODO
 
 - include logic for image width and height
