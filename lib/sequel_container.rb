@@ -12,6 +12,7 @@ module Sequel
           return object.each { |o| contains(o, options) } if object.is_a? Array
 
           container = table_name
+          url_template = options[:url] || '/:container/:id/:filename'
 
           class_eval <<-CONTAINED_PATH, __FILE__, __LINE__ + 1
             def #{object}_path
@@ -24,7 +25,19 @@ module Sequel
             def #{object}_url
               return unless #{object}?
               @#{object}_path ||= write_#{object}
-              @#{object}_url ||= "/#{container}/\#{id}/\#{#{object}_filename}"
+              @#{object}_url ||= "#{url_template}".gsub(/:(\\w+)/) do |m|
+                sym = $1.to_sym
+                case sym
+                when :container
+                  "#{container}"
+                when :filename
+                  send("#{object}_filename")
+                when :extension
+                  send("#{object}_extension")
+                else
+                  send(sym)
+                end
+              end
             end
           CONTAINED_URL
 
