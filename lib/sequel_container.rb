@@ -1,4 +1,5 @@
 require 'tmpdir'
+require 'image_size'
 
 module Sequel
   module Plugins
@@ -40,6 +41,19 @@ module Sequel
               end
             end
           CONTAINED_URL
+
+          class_eval <<-CONTAINED_ASSIGNMENT, __FILE__, __LINE__ + 1
+            def #{object}=(value)
+              return if value.nil?
+              self.#{object}_type = content_type = value[:type]
+              self.#{object}_data = data = value[:tempfile].read
+              if content_type =~ /^image\\\/.*/
+                size = ImageSize.new(data)
+                self.#{object}_height = size.height
+                self.#{object}_width = size.width
+              end
+            end
+          CONTAINED_ASSIGNMENT
 
           class_eval <<-CONTAINED_QUERY, __FILE__, __LINE__ + 1
             def #{object}?

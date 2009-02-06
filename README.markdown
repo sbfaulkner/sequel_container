@@ -33,15 +33,18 @@ Install the gem(s):
 
 ## CHANGES
 
+### 1.2.0
+
+- added assignment method
+- automatically store image width and height for image content types
+
 ### 1.1.0
 
 - added support for :url option on contains to specify custom url path
 
 ## TODO
 
-- include logic for image width and height
-- better assignment support (i.e. don't require separate assignment of type and data)
-- publish in sequel www/pages/plugins
+- support for assignment other than from rack/sinatra?
 - other containment types... e.g. filesystem, s3, git?
 
 ## Legal
